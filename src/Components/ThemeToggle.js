@@ -15,7 +15,8 @@ export default function ThemeToggle() {
         background: theme.bg, 
         border: 'solid', 
         borderColor: theme.ui, 
-        padding: 5 
+        padding: 5,
+        cursor: 'pointer'
       }}
     >
       Toggle Theme
