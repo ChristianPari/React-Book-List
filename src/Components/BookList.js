@@ -6,35 +6,50 @@ import { useBooks, useBooksUpdate } from '../Contexts/BookListContext'
 
 // components
 import NewBookForm from './NewBookForm'
+import BookDetails from './BookDetails'
 
 export default function BookList() {
   const { isLightTheme, light, dark } = useTheme();
   const theme = isLightTheme ? light : dark;
 
+  const books = useBooks()
+  const addBook = useBooksUpdate().addBook
+
   const divStyle =  {
     background: theme.bg, 
     color: theme.text
   }
-  const liStyle = {
-    background: theme.ui
-  }
 
-  return (
-    <div className='book-list' style={divStyle}>
+  return books.length ? (
+    <div 
+      className='book-list' 
+      style={divStyle}
+    >
       <ul>
-        { useBooks().map(book => {
+        { books.map(book => {
           return (
-            <li
+            <BookDetails 
+              book={book} 
               key={book.id}
-              style={liStyle}
-            >
-              {book.title}
-            </li>
+            />
           )
         })}
       </ul>
       <NewBookForm 
-        addBook={useBooksUpdate()}
+        addBook={addBook}
+      />
+    </div>
+  ) : (
+    <div 
+      className='empty'
+      style={{...divStyle,
+        padding: '10px',
+        marginBottom: '20px'
+      }}  
+    >
+      <p>No books to read. Hello free time!</p>
+      <NewBookForm 
+        addBook={addBook}
       />
     </div>
   )
