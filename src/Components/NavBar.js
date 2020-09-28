@@ -3,6 +3,7 @@ import React from 'react'
 // contexts
 import { useTheme } from '../Contexts/ThemeContext'
 import { useAuth, useAuthUpdate } from '../Contexts/AuthContext'
+import { useBooks } from '../Contexts/BookListContext'
 
 export default function NavBar() {
   const { isLightTheme, light, dark } = useTheme()
@@ -10,20 +11,20 @@ export default function NavBar() {
 
   const { isAuthenticated: auth } = useAuth()
 
+  const books = useBooks()
+
   return (
     <nav style={{background: theme.ui, color: theme.text}}>
-      <h1>Context App</h1>
+      <h1>Christian's Reading List</h1>
       <div
         onClick={useAuthUpdate()}
         style={{cursor: 'pointer'}}
       >
-        { auth ? 'Logged In' : 'Logged Out' }
+        Click me to chnage! { auth ? 'Logged In' : 'Logged Out' }
       </div>
-      <ul>
-        <li>Home</li>
-        <li>About</li>
-        <li>Contact</li>
-      </ul>
+      <p>
+        Currently you have { books.length } books to read...
+      </p>
     </nav>
   )
 }
