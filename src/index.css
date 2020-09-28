@@ -41,4 +41,6 @@ nav ul li {
   padding: 10px;
   margin: 10px auto;
   border-radius: 10px;
+  cursor: pointer;
+  user-select: none;
 }
