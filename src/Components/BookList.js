@@ -2,7 +2,7 @@ import React from 'react'
 
 // contexts
 import { useTheme } from '../Contexts/ThemeContext'
-import { useBooks, useBooksUpdate } from '../Contexts/BookListContext'
+import { useBooks } from '../Contexts/BookListContext'
 
 // components
 import NewBookForm from './NewBookForm'
@@ -13,7 +13,6 @@ export default function BookList() {
   const theme = isLightTheme ? light : dark;
 
   const books = useBooks()
-  const addBook = useBooksUpdate().addBook
 
   const divStyle =  {
     background: theme.bg, 
@@ -35,9 +34,7 @@ export default function BookList() {
           )
         })}
       </ul>
-      <NewBookForm 
-        addBook={addBook}
-      />
+      <NewBookForm />
     </div>
   ) : (
     <div 
@@ -48,9 +45,7 @@ export default function BookList() {
       }}  
     >
       <p>No books to read. Hello free time!</p>
-      <NewBookForm 
-        addBook={addBook}
-      />
+      <NewBookForm />
     </div>
   )
 }

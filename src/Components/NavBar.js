@@ -17,10 +17,11 @@ export default function NavBar() {
     <nav style={{background: theme.ui, color: theme.text}}>
       <h1>Christian's Reading List</h1>
       <div
+        className='auth-info'
         onClick={useAuthUpdate()}
         style={{cursor: 'pointer'}}
       >
-        Click me to chnage! { auth ? 'Logged In' : 'Logged Out' }
+        Click me to change! { auth ? 'Logged In' : 'Logged Out' }
       </div>
       <p>
         Currently you have { books.length } books to read...

@@ -2,14 +2,19 @@ import React, { useState } from 'react'
 
 // contexts
 import { useTheme } from '../Contexts/ThemeContext'
+import { useBooksUpdate } from '../Contexts/BookListContext'
 
 export default function NewBookForm(props) {
+  const dispatch = useBooksUpdate()
   const [title, setTitle] = useState('')
   const [author, setAuthor] = useState('')
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    props.addBook(title, author)
+    dispatch({type: 'ADD_BOOK', book: {
+      title,
+      author
+    }})
     setTitle('')
     setAuthor('')
   }
